@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="helloWorldService" class="org.wsa.service.HelloWorldService" />
+
+    <bean id="customerServiceImpl" class="org.wsa.service.impl.CustomerServiceImpl2" scope="prototype" />
+    <bean id="customerController" class="org.wsa.controller.CustomerController">
+        <property name="customerService" ref = "customerServiceImpl" />
+    </bean>
+
+    <bean id="user" class="org.wsa.pojo.User" />
+    <alias name="user" alias="user1" />
+
+    <bean id="userController" class="org.wsa.controller.UserController">
+        <property name="userService" ref="userService" />
+    </bean>
+
+    <bean id="userService" class="org.wsa.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="userDao" class="org.wsa.dao.impl.UserDaoImpl" />
+</beans>
